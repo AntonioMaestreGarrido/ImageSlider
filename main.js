@@ -3,20 +3,26 @@ var test = document.querySelector("input");
 var coleccion = [];
 
 console.log(test.files);
-const frame = document.querySelector("#frame")
+const frame = document.querySelector("#frame");
 
 document.querySelector("#sub").addEventListener("click", selectFiles);
 document.querySelector("#test").addEventListener("click", fillSlide);
 
-var timer = setInterval(changeBigPicture, 5000);
-timer()
+function timer() {
+  setInterval(changeBigPicture, 5000);
+}
+
 function changeBigPicture() {
   let index = frame.querySelector("img").getAttribute("index");
-  console.log(index)
-  console.log(typeof(index))
-  index++
-  showBig(index)
-  console.log(typeof(index))
+  console.log(index);
+  console.log(typeof index);
+  index++;
+  if (index == coleccion.length) {
+    index = 0;
+  }
+
+  showBig(index);
+  console.log(typeof index);
 }
 
 function selectFiles() {
@@ -26,7 +32,15 @@ function selectFiles() {
   }
 }
 
-
+function markSelected(index) {
+  //document.querySelector(".selected").classList.toggle("selected")
+  //document.querySelector("#slide").querySelector(`[index='${index}']`).classList.add("selected")
+  document.querySelectorAll(".miniImg").forEach(element=>element.classList.remove("selected"))
+  document
+    .querySelector(`#slide > [index='${index}']`)
+    .classList.add("selected");
+  console.log("nice");
+}
 function fillSlide() {
   let slide = document.querySelector("#slide");
   coleccion.forEach((im) => {
@@ -42,13 +56,18 @@ function fillSlide() {
       slide.appendChild(newImage);
     });
   });
+
+ 
+  showBig(0);
+  timer();
 }
 function showBig(e) {
-  let index
-  if(typeof(e)==="object"){
-     index = e.target.getAttribute("index");
-
-  }else if(typeof(e)==="number"){ index=e}
+  let index;
+  if (typeof e === "object") {
+    index = e.target.getAttribute("index");
+  } else if (typeof e === "number") {
+    index = e;
+  }
   let imagen = document.querySelector("#imagen");
   var fr = new FileReader();
 
@@ -57,15 +76,13 @@ function showBig(e) {
   fr.addEventListener("load", () => {
     imagen.setAttribute("index", index);
     imagen.setAttribute("src", fr.result);
+    markSelected(index);
   });
-
-  ttest();
 }
 
 function ttest() {
   let imagetest = document.querySelector("[index='2']");
   imagetest.classList.remove("miniImg");
-
 
   document.querySelector("#frame").click();
   frame.click();

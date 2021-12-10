@@ -14,7 +14,7 @@
 
 }
 #select{
-    border: solid 3px red;
+    
     margin: auto;
     
     justify-content: center;
@@ -31,12 +31,16 @@
 }
 img{
     height: inherit;
+    transition: all 1s;
 }
 .miniImg{
     width: 100px;
     
     border: solid 1px black;
 }
-.miniImg:hover{
-    outline: solid 3px red;
+.selected{
+    transition: all .5s;
+    outline: solid 3px blue;
+    transform: scale(1.1) ;
+    
 }
