@@ -8,7 +8,7 @@ const frame = document.querySelector("#frame");
 document.querySelector("#sub").addEventListener("click", selectFiles);
 document.querySelector("#test").addEventListener("click", fillSlide);
 
-function timer() {
+const timer=function() {
   setInterval(changeBigPicture, 5000);
 }
 
