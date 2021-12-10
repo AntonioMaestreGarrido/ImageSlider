@@ -65,6 +65,7 @@ function showBig(e) {
   let index;
   if (typeof e === "object") {
     index = e.target.getAttribute("index");
+    clearInterval(timer)
   } else if (typeof e === "number") {
     index = e;
   }

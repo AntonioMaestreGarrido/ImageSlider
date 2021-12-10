@@ -40,7 +40,32 @@ img{
 }
 .selected{
     transition: all .5s;
-    outline: solid 3px blue;
-    transform: scale(1.1) ;
+    transition-delay: 1.3s;
+   
+   
+   
+    animation: spin 1.3s  ease-out forwards;
+    
     
 }
+
+@keyframes spin {
+    from {transform: rotate(0.2turn) scale(1.2);}
+    
+    to   {transform: rotate(1turn) scale(2);}
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
